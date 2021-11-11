@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarServiceImpl implements CarService {
-    List<Car> carList;
+    private List<Car> carList;
 
     public CarServiceImpl() {
         carList = new ArrayList<>();
@@ -18,13 +18,10 @@ public class CarServiceImpl implements CarService {
         carList.add(new Car("Volkswagen", "Magic bus", 1969));
     }
 
-    @Override
-    public List<Car> getCars() {
-        return carList;
-    }
 
     @Override
     public List<Car> getCars(Integer count) {
+        if (count==null || count > carList.size()) return carList;
         List<Car> requestedCarList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             requestedCarList.add(carList.get(i));
